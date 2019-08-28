@@ -14,7 +14,7 @@ import java.net.UnknownHostException;
 @Slf4j
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {Application.class})
-public class ClientRepositoryTest {
+public class ClientDBRepositoryTest {
 
     public static final String CLIENT_ID = "test_id";
     public static final String SPENT_TOTAL = "much";
@@ -28,7 +28,7 @@ public class ClientRepositoryTest {
     private static DBCollection mongoCollection = null;
 
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientDBRepository clientDBRepository;
 
 
     @BeforeClass
@@ -51,17 +51,17 @@ public class ClientRepositoryTest {
 
     @Test
     public void testCreateClient() throws Exception {
-        Assert.assertNotNull(clientRepository.createClient(CLIENT_ID, SPENT_TOTAL, IS_BIG));
+        Assert.assertNotNull(clientDBRepository.createClient(CLIENT_ID, SPENT_TOTAL, IS_BIG));
     }
 
     @Test
     public void testFindClientByClientId() throws Exception {
-        Assert.assertNotNull(clientRepository.findClientByClientId(CLIENT_ID));
+        Assert.assertNotNull(clientDBRepository.findClientByClientId(CLIENT_ID));
     }
 
     @Test
     public void testGetAllClients() throws Exception {
-        Assert.assertTrue(clientRepository.getAllClients().size() > 0);
+        Assert.assertTrue(clientDBRepository.getAllClients().size() > 0);
     }
 
 

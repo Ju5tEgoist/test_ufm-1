@@ -1,8 +1,12 @@
 application:
-  config:
-    numthreads: 20
+  inputFilesDir: input
+  processedFilesDir: processed
+  outputFilesDir: output
+  scheduler.interval: 1000
 
 mongodb:
+  host: localhost
+  port: 27017
   database.name: test
   collection.name: clients
 

@@ -1,0 +1,18 @@
+package drools.process
+
+import java.math.BigDecimal;
+import com.andersen.test_ufm.domain.Client
+import com.andersen.test_ufm.domain.Subscriber
+
+dialect "java"
+rule "Convert input file to output file"
+when
+    $client : Client()
+    $totalSpent : Number() from accumulate (
+        $subscriber : Subscriber() from $client.getSubscribers(), sum( $subscriber.getSpent() )
+    )
+then
+    $client.setSpentTotal($totalSpent.longValue());
+    $client.setIsBig($client.getSubscribers().size() > 100);
+end
+
